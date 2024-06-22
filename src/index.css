@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-medium font-manrope bg-main-bg;
+}
+
+input {
+  @apply w-[100%] leading-[1.29] border-my-black-15 h-[42px] rounded-[30px] pl-[12px] text-[14px] border-[1px] outline-none md:h-[52px] md:text-[16px] md:pl-[16px] md:leading-[1.25] lg:w-[424px];
+}
+
+input:focus {
+  @apply border-my-yellow;
+}
+.input-error {
+  @apply text-[9px] text-my-red absolute top-[40px] left-[12px] md:top-[52px] md:left-[18px];
+}
+
+button {
+  @apply cursor-pointer transition-colors;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  @apply mt-0;
+}
+
+ul {
+  @apply p-0 m-0  list-none;
+}
+
+.header-link {
+  @apply cursor-pointer transition-colors flex items-center justify-center w-[119px] h-[48px] border-[1px]  rounded-[30px] text-[14px] leading-[1.29] tracking-[-0.03em] md:h-[50px] md:text-[16px] md:leading-[1.25];
+}
+
+/* .header-link-desktop {
+  @apply flex items-center justify-center w-[119px] h-[48px] border-[1px]   rounded-[30px]  md:h-[50px] md:text-[16px] md:leading-[1.25] lg:text-my-white;
+} */
+
+.span-title {
+  @apply group-hover:text-my-yellow-dark;
+}
