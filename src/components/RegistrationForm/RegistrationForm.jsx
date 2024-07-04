@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import { registerSchema } from '../../schemas';
@@ -12,6 +12,7 @@ import { useIconSizeHook } from '../../helpers';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
   const [showPass, setShowPass] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
@@ -26,7 +27,7 @@ export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     resolver: yupResolver(registerSchema),
   });
@@ -38,6 +39,9 @@ export const RegisterForm = () => {
         return;
       }
       const response = await dispatch(registerThunk(restData));
+      console.log(response);
+      navigate('/profile');
+
       if (response.error) {
         throw new Error();
       }
@@ -48,6 +52,8 @@ export const RegisterForm = () => {
   };
   const closeEyeIconSize = useIconSizeHook('close-eye');
   const openEyeIconSize = useIconSizeHook('open-eye');
+  const errorIconSize = useIconSizeHook('error');
+  const successIconSize = useIconSizeHook('success');
   return (
     <>
       <form
@@ -55,20 +61,103 @@ export const RegisterForm = () => {
         className="flex flex-col gap-[10px] mb-[12px] md:gap-[16px] md:mb-[16px] "
       >
         <div className="relative">
-          <input type="text" {...register('name')} placeholder="Name" />
+          <input
+            type="text"
+            {...register('name')}
+            placeholder="Name"
+            className={`${
+              errors.name
+                ? 'border-my-red border-[1px] hover:border-my-red'
+                : dirtyFields.name && !errors.name
+                ? 'border-my-green border-[1px] hover:border-my-green'
+                : ' '
+            }`}
+          />
+          {dirtyFields.name && !errors.name ? (
+            <Icon
+              id="success"
+              size={successIconSize}
+              className="absolute right-[12px] top-[12px]"
+            />
+          ) : (
+            ''
+          )}
           <p className="input-error">{errors.name?.message}</p>
+          {errors.name ? (
+            <Icon
+              id="error"
+              size={errorIconSize}
+              className="absolute right-[12px] top-[12px]"
+            />
+          ) : (
+            ' '
+          )}
         </div>
         <div className="relative">
-          <input type="email" {...register('email')} placeholder="Email" />
+          <input
+            type="email"
+            {...register('email')}
+            placeholder="Email"
+            className={`${
+              errors.email
+                ? 'border-my-red border-[1px] hover:border-my-red'
+                : dirtyFields.email && !errors.email
+                ? 'border-my-green border-[1px] hover:border-my-green'
+                : ' '
+            }`}
+          />
+          {dirtyFields.email && !errors.email ? (
+            <Icon
+              id="success"
+              size={successIconSize}
+              className="absolute right-[12px] top-[12px]"
+            />
+          ) : (
+            ''
+          )}
           <p className="input-error">{errors.email?.message}</p>
+          {errors.email ? (
+            <Icon
+              id="error"
+              size={errorIconSize}
+              className="absolute right-[12px] top-[12px]"
+            />
+          ) : (
+            ' '
+          )}
         </div>
         <div className="relative">
           <input
             type={showPass ? 'text' : 'password'}
             {...register('password')}
             placeholder="Password"
+            className={`${
+              errors.password
+                ? 'border-my-red border-[1px] hover:border-my-red'
+                : dirtyFields.password && !errors.password
+                ? 'border-my-green border-[1px] hover:border-my-green'
+                : ' '
+            }`}
           />
+          {dirtyFields.password && !errors.password ? (
+            <Icon
+              id="success"
+              size={successIconSize}
+              className="absolute right-[38px]  top-[12px]"
+            />
+          ) : (
+            ''
+          )}
           <p className="input-error">{errors.password?.message}</p>
+          {errors.password ? (
+            <Icon
+              id="error"
+              size={errorIconSize}
+              className="absolute right-[38px] top-[12px]"
+            />
+          ) : (
+            ' '
+          )}
           <button
             type="button"
             className="absolute top-[12px] right-[12px] flex items-center justify-center md:top-[15px] md:right-[16px] "
@@ -86,9 +175,33 @@ export const RegisterForm = () => {
             type={showPassConfirm ? 'text' : 'password'}
             {...register('confirmpassword')}
             placeholder="Confirm password"
+            className={`${
+              errors.password
+                ? 'border-my-red border-[1px] hover:border-my-red'
+                : dirtyFields.confirmpassword && !errors.confirmpassword
+                ? 'border-my-green border-[1px] hover:border-my-green'
+                : ' '
+            }`}
           />
+          {dirtyFields.confirmpassword && !errors.confirmpassword ? (
+            <Icon
+              id="success"
+              size={successIconSize}
+              className="absolute right-[38px]  top-[12px]"
+            />
+          ) : (
+            ''
+          )}
           <p className="input-error">{errors.confirmpassword?.message}</p>
-
+          {errors.confirmpassword ? (
+            <Icon
+              id="error"
+              size={errorIconSize}
+              className="absolute right-[38px] top-[12px]"
+            />
+          ) : (
+            ' '
+          )}
           <button
             type="button"
             id="confirmpassword"

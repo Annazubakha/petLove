@@ -16,6 +16,10 @@ export const useIconSizeHook = (id) => {
     case 'open-eye':
       size = widthMobile ? 18 : 22;
       break;
+    case 'error':
+    case 'success':
+      size = widthMobile ? 18 : 22;
+      break;
     default:
       size = 18;
   }

@@ -5,7 +5,8 @@ export const registerThunk = createAsyncThunk(
   'register',
   async (credentials, thunkAPI) => {
     try {
-      await instance.post('/users/signup', credentials);
+      const { data } = await instance.post('/users/signup', credentials);
+      return data;
     } catch (error) {
       if (error.response.request.status === 409) {
         return thunkAPI.rejectWithValue('The email is already in use.');
@@ -40,6 +41,26 @@ export const logoutThunk = createAsyncThunk(
     try {
       await instance.post('/users/signout', token);
       clearToken();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchUserInfoThunk = createAsyncThunk(
+  'user full',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue("Can't fetch refresh user");
+    }
+
+    try {
+      setToken(persistedToken);
+      const res = await instance.get('/users/current/full');
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

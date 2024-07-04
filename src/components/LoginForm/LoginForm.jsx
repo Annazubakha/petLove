@@ -22,7 +22,7 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
@@ -43,6 +43,8 @@ export const LoginForm = () => {
 
   const closeEyeIconSize = useIconSizeHook('close-eye');
   const openEyeIconSize = useIconSizeHook('open-eye');
+  const errorIconSize = useIconSizeHook('error');
+  const successIconSize = useIconSizeHook('success');
   return (
     <>
       <form
@@ -50,16 +52,70 @@ export const LoginForm = () => {
         className="flex flex-col gap-[10px] mb-[12px] md:gap-[16px] md:mb-[16px] "
       >
         <div className="relative">
-          <input type="email" {...register('email')} placeholder="Email" />
+          <input
+            type="email"
+            {...register('email')}
+            placeholder="Email"
+            className={`${
+              errors.email
+                ? 'border-my-red border-[1px] hover:border-my-red'
+                : dirtyFields.email && !errors.email
+                ? 'border-my-green border-[1px] hover:border-my-green'
+                : ' '
+            }`}
+          />
+          {dirtyFields.email && !errors.email ? (
+            <Icon
+              id="success"
+              size={successIconSize}
+              className="absolute right-[12px] top-[12px]"
+            />
+          ) : (
+            ''
+          )}
           <p className="input-error">{errors.email?.message}</p>
+          {errors.email ? (
+            <Icon
+              id="error"
+              size={errorIconSize}
+              className="absolute right-[12px] top-[12px]"
+            />
+          ) : (
+            ' '
+          )}
         </div>
         <div className="relative">
           <input
             type={showPass ? 'text' : 'password'}
             {...register('password')}
             placeholder="Password"
+            className={`${
+              errors.password
+                ? 'border-my-red border-[1px] hover:border-my-red'
+                : dirtyFields.password && !errors.password
+                ? 'border-my-green border-[1px] hover:border-my-green'
+                : ' '
+            }`}
           />
+          {dirtyFields.password && !errors.password ? (
+            <Icon
+              id="success"
+              size={successIconSize}
+              className="absolute right-[38px]  top-[12px]"
+            />
+          ) : (
+            ''
+          )}
           <p className="input-error">{errors.password?.message}</p>
+          {errors.password ? (
+            <Icon
+              id="error"
+              size={errorIconSize}
+              className="absolute right-[38px] top-[12px]"
+            />
+          ) : (
+            ' '
+          )}
           <button
             type="button"
             className="absolute top-[12px] right-[12px] flex items-center justify-center md:top-[15px] md:right-[16px] "

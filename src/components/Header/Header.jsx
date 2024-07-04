@@ -22,8 +22,8 @@ export const Header = () => {
         }`}
       >
         <NavLink
-          to="/"
-          className={`${'flex flex-row font-bold items-center text-[20px] md:text-[28px]'} ${
+          to="/home"
+          className={`${'flex flex-row font-bold items-center text-[20px] md:text-[28px]  leading-1 tracking-[-0.04em] '} ${
             location.pathname === '/home' ? 'text-my-white ' : 'text-my-black'
           }`}
         >
@@ -34,7 +34,7 @@ export const Header = () => {
             className={
               location.pathname === '/home'
                 ? 'stroke-my-white fill-my-white'
-                : 'stroke-my-yellow fill-my-yellow'
+                : 'stroke-my-yellow fill-my-yellow '
             }
           />
           ve

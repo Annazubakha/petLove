@@ -1,9 +1,10 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PrivateRoute, PublicRoute } from '../routes';
 import { SharedLayout } from 'components';
-import { selectIsLoggedIn } from '../redux/auth/slice';
+import { selectIsLoggedIn, selectToken } from '../redux/auth/slice';
+import { fetchUserInfoThunk } from '../redux/auth/operations';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() =>
@@ -16,6 +17,14 @@ const ProfilePage = lazy(() => import('pages/ProfilePage/ProfilePage'));
 
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (token && !isLoggedIn) {
+      dispatch(fetchUserInfoThunk());
+    }
+  }, [dispatch, isLoggedIn, token]);
+
   const link = isLoggedIn ? '/profile' : '/home';
   return (
     <>
@@ -24,7 +33,7 @@ export const App = () => {
           <Route
             path="/home"
             element={
-              <PublicRoute>
+              <PublicRoute restricted={false}>
                 <HomePage />
               </PublicRoute>
             }
@@ -32,7 +41,7 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              <PublicRoute>
+              <PublicRoute restricted={true}>
                 <LoginPage />
               </PublicRoute>
             }
@@ -40,7 +49,7 @@ export const App = () => {
           <Route
             path="/register"
             element={
-              <PublicRoute>
+              <PublicRoute restricted={true}>
                 <RegistrationPage />
               </PublicRoute>
             }
@@ -48,7 +57,7 @@ export const App = () => {
           <Route
             path="/friends"
             element={
-              <PublicRoute>
+              <PublicRoute restricted={false}>
                 <FriendsPage />
               </PublicRoute>
             }

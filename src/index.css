@@ -7,10 +7,10 @@ body {
 }
 
 input {
-  @apply w-[100%] leading-[1.29] border-my-black-15 h-[42px] rounded-[30px] pl-[12px] text-[14px] border-[1px] outline-none md:h-[52px] md:text-[16px] md:pl-[16px] md:leading-[1.25] lg:w-[424px];
+  @apply cursor-pointer w-[100%] leading-[1.29] border-my-black-15 h-[42px] rounded-[30px] pl-[12px] text-[14px] border-[1px] outline-none md:h-[52px] md:text-[16px] md:pl-[16px] md:leading-[1.25] lg:w-[424px];
 }
 
-input:focus {
+input:hover {
   @apply border-my-yellow;
 }
 .input-error {
