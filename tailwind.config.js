@@ -32,6 +32,7 @@ export default {
         'my-black-50': 'rgba(38, 38, 38, 0.5)',
         'my-black-80': 'rgba(38, 38, 38, 0.8)',
         'my-black-40': 'rgba(38, 38, 38, 0.4)',
+        'my-black-30': 'rgba(38, 38, 38, 0.3)',
         'my-white': '#FFFFFF',
         'my-white-15': 'rgba(255, 255, 255, 0.15)',
         'my-white-40': 'rgba(255, 255, 255, 0.4)',

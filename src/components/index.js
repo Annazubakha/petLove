@@ -12,3 +12,8 @@ export * from './FriendsList/FriendsList';
 export * from './FriendsItem/FriendsItem';
 export * from './Loader/Loader';
 export * from './DogLoader/DogLoader';
+export * from './AuthNav/AuthNav';
+export * from './Nav/Nav';
+export * from './Logo/Logo';
+export * from './ModalApproveAction/ModalApproveAction';
+export * from './LogOutBtn/LogOutBtn';

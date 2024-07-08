@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { loginSchema } from '../../schemas';
 import { Icon, Loader } from 'components';
 import { useIconSizeHook } from '../../helpers';
-import { loginThunk } from '../../redux/auth/operations';
+import { fetchUserInfoThunk, loginThunk } from '../../redux/auth/operations';
 import { selectIsLoading } from '../../redux/auth/slice';
 
 export const LoginForm = () => {
@@ -31,7 +31,7 @@ export const LoginForm = () => {
     try {
       const response = await dispatch(loginThunk(data));
       navigate('/profile');
-
+      await dispatch(fetchUserInfoThunk());
       if (response.error) {
         throw new Error();
       }
@@ -58,9 +58,9 @@ export const LoginForm = () => {
             placeholder="Email"
             className={`${
               errors.email
-                ? 'border-my-red border-[1px] hover:border-my-red'
+                ? 'border-my-red border-[1px] hover:border-my-red focus:border-my-red'
                 : dirtyFields.email && !errors.email
-                ? 'border-my-green border-[1px] hover:border-my-green'
+                ? 'border-my-green border-[1px] hover:border-my-green focus:border-my-green'
                 : ' '
             }`}
           />
@@ -91,9 +91,9 @@ export const LoginForm = () => {
             placeholder="Password"
             className={`${
               errors.password
-                ? 'border-my-red border-[1px] hover:border-my-red'
+                ? 'border-my-red border-[1px] hover:border-my-red focus:border-my-red'
                 : dirtyFields.password && !errors.password
-                ? 'border-my-green border-[1px] hover:border-my-green'
+                ? 'border-my-green border-[1px] hover:border-my-green focus:border-my-green'
                 : ' '
             }`}
           />

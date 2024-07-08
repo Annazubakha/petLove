@@ -10,7 +10,8 @@ input {
   @apply cursor-pointer w-[100%] leading-[1.29] border-my-black-15 h-[42px] rounded-[30px] pl-[12px] text-[14px] border-[1px] outline-none md:h-[52px] md:text-[16px] md:pl-[16px] md:leading-[1.25] lg:w-[424px];
 }
 
-input:hover {
+input:hover,
+input:focus {
   @apply border-my-yellow;
 }
 .input-error {
@@ -36,7 +37,7 @@ ul {
 }
 
 .header-link {
-  @apply cursor-pointer transition-colors flex items-center justify-center w-[119px] h-[48px] border-[1px]  rounded-[30px] text-[14px] leading-[1.29] tracking-[-0.03em] md:h-[50px] md:text-[16px] md:leading-[1.25];
+  @apply relative cursor-pointer transition-colors flex items-center justify-center w-[119px] h-[48px] border-[1px]  rounded-[30px] text-[14px] leading-[1.29] tracking-[-0.03em] md:h-[50px] md:text-[16px] md:leading-[1.25];
 }
 
 /* .header-link-desktop {

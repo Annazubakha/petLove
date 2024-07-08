@@ -59,8 +59,9 @@ export const fetchUserInfoThunk = createAsyncThunk(
 
     try {
       setToken(persistedToken);
-      const res = await instance.get('/users/current/full');
-      return res.data;
+      const { data } = await instance.get('/users/current/full');
+      console.log(data);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

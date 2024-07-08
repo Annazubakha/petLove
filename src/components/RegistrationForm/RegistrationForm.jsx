@@ -67,9 +67,9 @@ export const RegisterForm = () => {
             placeholder="Name"
             className={`${
               errors.name
-                ? 'border-my-red border-[1px] hover:border-my-red'
+                ? 'border-my-red border-[1px] hover:border-my-red focus:border-my-red'
                 : dirtyFields.name && !errors.name
-                ? 'border-my-green border-[1px] hover:border-my-green'
+                ? 'border-my-green border-[1px] hover:border-my-green focus:border-my-green'
                 : ' '
             }`}
           />
@@ -100,9 +100,9 @@ export const RegisterForm = () => {
             placeholder="Email"
             className={`${
               errors.email
-                ? 'border-my-red border-[1px] hover:border-my-red'
+                ? 'border-my-red border-[1px] hover:border-my-red focus:border-my-red'
                 : dirtyFields.email && !errors.email
-                ? 'border-my-green border-[1px] hover:border-my-green'
+                ? 'border-my-green border-[1px] hover:border-my-green focus:border-my-green'
                 : ' '
             }`}
           />
@@ -133,9 +133,9 @@ export const RegisterForm = () => {
             placeholder="Password"
             className={`${
               errors.password
-                ? 'border-my-red border-[1px] hover:border-my-red'
+                ? 'border-my-red border-[1px] hover:border-my-red focus:border-my-red'
                 : dirtyFields.password && !errors.password
-                ? 'border-my-green border-[1px] hover:border-my-green'
+                ? 'border-my-green border-[1px] hover:border-my-green focus:border-my-green'
                 : ' '
             }`}
           />
@@ -177,9 +177,9 @@ export const RegisterForm = () => {
             placeholder="Confirm password"
             className={`${
               errors.password
-                ? 'border-my-red border-[1px] hover:border-my-red'
+                ? 'border-my-red border-[1px] hover:border-my-red focus:border-my-red'
                 : dirtyFields.confirmpassword && !errors.confirmpassword
-                ? 'border-my-green border-[1px] hover:border-my-green'
+                ? 'border-my-green border-[1px] hover:border-my-green focus:border-my-green'
                 : ' '
             }`}
           />
