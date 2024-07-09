@@ -17,3 +17,7 @@ export * from './Nav/Nav';
 export * from './Logo/Logo';
 export * from './ModalApproveAction/ModalApproveAction';
 export * from './LogOutBtn/LogOutBtn';
+export * from './NewsItem/NewsItem';
+export * from './NewsList/NewsList';
+export * from './SearchField/SearchField';
+export * from './Pagination/Pagination';

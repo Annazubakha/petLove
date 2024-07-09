@@ -14,6 +14,7 @@ const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage/ProfilePage'));
+const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -43,6 +44,14 @@ export const App = () => {
             element={
               <PublicRoute restricted={true}>
                 <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/news"
+            element={
+              <PublicRoute restricted={false}>
+                <NewsPage />
               </PublicRoute>
             }
           />

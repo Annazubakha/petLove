@@ -47,3 +47,11 @@ ul {
 .span-title {
   @apply group-hover:text-my-yellow-dark;
 }
+
+.btn_pagination {
+  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center;
+}
+
+.btn_pagination_double {
+  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center relative;
+}
