@@ -49,9 +49,37 @@ ul {
 }
 
 .btn_pagination {
-  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center;
+  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center md:w-[44px] md:h-[44px];
+  &:hover:not(:disabled) {
+    @apply text-my-white bg-my-yellow border-my-yellow;
+  }
+}
+.btn_pagination_number {
+  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center  md:w-[44px] md:h-[44px];
+
+  &:hover:not(:disabled) {
+    @apply text-my-white bg-my-yellow border-my-yellow;
+  }
+  &:disabled {
+    @apply opacity-50;
+  }
+  &.active {
+    @apply text-my-white bg-my-yellow border-my-yellow;
+  }
+}
+.btn_pagination_double {
+  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center relative md:w-[44px] md:h-[44px];
+
+  &:hover:not(:disabled) {
+    @apply text-my-white bg-my-yellow border-my-yellow;
+  }
 }
 
-.btn_pagination_double {
-  @apply flex w-[40px] h-[40px] rounded-[50%] border-[1px] items-center justify-center relative;
+.btn_pagination:hover .icon,
+.btn_pagination_double:hover .icon {
+  @apply fill-my-white;
+}
+.btn_pagination:disabled .icon,
+.btn_pagination_double:disabled .icon {
+  @apply opacity-50 fill-my-black;
 }
