@@ -21,3 +21,5 @@ export * from './NewsItem/NewsItem';
 export * from './NewsList/NewsList';
 export * from './SearchField/SearchField';
 export * from './Pagination/Pagination';
+export * from './NoticesItem/NoticesItem';
+export * from './NoticesList/NoticesList';

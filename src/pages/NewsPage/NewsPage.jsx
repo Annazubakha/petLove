@@ -40,11 +40,13 @@ const NewsPage = () => {
       {news?.length > 0 ? (
         <>
           <NewsList news={news} />
-          <Pagination
-            setPage={handlePageChange}
-            totalPages={totalPages}
-            page={page}
-          />
+          {totalPages !== 1 && (
+            <Pagination
+              setPage={handlePageChange}
+              totalPages={totalPages}
+              page={page}
+            />
+          )}
         </>
       ) : !isLoading ? (
         <p className="text-[14px] text-center md:text-[28px] mt-[20px] ">

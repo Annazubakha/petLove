@@ -43,6 +43,7 @@ export default {
         'my-yellow-light': '#FFF4DF',
         'my-green': '#08AA83',
         'my-red': '#EF2447',
+        'my-black-second': '#2B2B2A',
       },
     },
   },

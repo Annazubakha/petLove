@@ -83,3 +83,15 @@ ul {
 .btn_pagination_double:disabled .icon {
   @apply opacity-50 fill-my-black;
 }
+
+/**
+  |============================
+  | notices page
+  |============================
+*/
+.notices_item_element {
+  @apply flex flex-col gap-[2px] capitalize;
+}
+.notices_item_element_span {
+  @apply text-my-black-50;
+}
