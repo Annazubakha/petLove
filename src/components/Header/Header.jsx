@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Icon, BurgerMenu, Nav, Logo, AuthNav, LogOutBtn } from 'components';
+import {
+  Icon,
+  BurgerMenu,
+  Nav,
+  Logo,
+  AuthNav,
+  LogOutBtn,
+  Modal,
+  ModalApproveAction,
+} from 'components';
 import { useIconSizeHook, useModal, useWindowSizeHook } from '../../helpers';
 import { selectIsLoggedIn } from '../../redux/auth/slice';
-import { Modal } from '../Modal/Modal';
-import { ModalApproveAction } from '../ModalApproveAction/ModalApproveAction';
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();

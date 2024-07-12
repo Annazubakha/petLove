@@ -29,7 +29,7 @@ export const BurgerMenu = ({ toggleBurgerMenu }) => {
               className={`${'flex items-center justify-center w-[178px] h-[42px] text-my-white rounded-[30px] md:h-[50px] md:text-[16px] md:leading-[1.25] md:w-[119px] '} ${
                 location.pathname === '/home'
                   ? '  hover:bg-my-yellow-dark bg-my-yellow'
-                  : ' border-my-white border-[1px] hover:text-my-yellow hover:bg-my-white hover:border-none'
+                  : ' border-my-yellow-light border-[1px] hover:text-my-yellow hover:bg-my-yellow-light-hover hover:border-none'
               }`}
             >
               LOG IN

@@ -8,12 +8,12 @@ export const fetchNoticesThunk = createAsyncThunk(
     {
       page = 1,
       keyword = '',
-      //   category = '',
-      //   species = '',
-      //   locationId = '',
-      //   byDate = '',
-      //   byPrice = '',
-      //   byPopularity = '',
+      category = '',
+      // species = '',
+      // locationId = '',
+      // byDate = '',
+      // byPrice = '',
+      // byPopularity = '',
     },
     thunkAPI
   ) => {
@@ -22,15 +22,52 @@ export const fetchNoticesThunk = createAsyncThunk(
         params: {
           page,
           keyword,
-          //   category,
-          //   species,
-          //   locationId,
-          //   byDate,
-          //   byPrice,
-          //   byPopularity,
+          category,
+          // species,
+          // locationId,
+          // byDate,
+          // byPrice,
+          // byPopularity,
         },
       });
       console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchNoticesCategiriesThunk = createAsyncThunk(
+  'get categories',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/notices/categories');
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchNoticesSexThunk = createAsyncThunk(
+  'get sex',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/notices/sex');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchNoticesSpeciesThunk = createAsyncThunk(
+  'get species',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get('/notices/species');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

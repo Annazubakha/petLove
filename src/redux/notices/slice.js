@@ -1,5 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchNoticesThunk } from './operation';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  fetchNoticesCategiriesThunk,
+  fetchNoticesSexThunk,
+  fetchNoticesSpeciesThunk,
+  fetchNoticesThunk,
+} from './operation';
 
 const initialState = {
   notices: [],
@@ -7,6 +12,9 @@ const initialState = {
   error: null,
   page: 1,
   totalPages: null,
+  categories: [],
+  sex: [],
+  species: [],
 };
 
 const slice = createSlice({
@@ -15,6 +23,9 @@ const slice = createSlice({
   reducers: {
     setPage: (state, action) => {
       state.page = action.payload.page;
+    },
+    setCategory: (state, action) => {
+      state.category = action.payload.category;
     },
   },
   extraReducers: (builder) => {
@@ -25,14 +36,42 @@ const slice = createSlice({
         state.isLoading = false;
         state.page = payload.page;
       })
-      .addCase(fetchNoticesThunk.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchNoticesThunk.rejected, (state, { payload }) => {
-        state.error = payload;
+      .addCase(fetchNoticesCategiriesThunk.fulfilled, (state, { payload }) => {
+        state.categories = payload;
         state.isLoading = false;
-      });
+      })
+      .addCase(fetchNoticesSexThunk.fulfilled, (state, { payload }) => {
+        state.sex = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchNoticesSpeciesThunk.fulfilled, (state, { payload }) => {
+        state.species = payload;
+        state.isLoading = false;
+      })
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesThunk.pending,
+          fetchNoticesCategiriesThunk.pending,
+          fetchNoticesSexThunk.pending,
+          fetchNoticesSpeciesThunk.pending
+        ),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesThunk.rejected,
+          fetchNoticesCategiriesThunk.rejected,
+          fetchNoticesSexThunk.rejected,
+          fetchNoticesSpeciesThunk.rejected
+        ),
+        (state, { payload }) => {
+          state.error = payload;
+          state.isLoading = false;
+        }
+      );
   },
   selectors: {
     selectIsNotices: (state) => state.notices,
@@ -40,10 +79,13 @@ const slice = createSlice({
     selectError: (state) => state.error,
     selectIsTotalPages: (state) => state.totalPages,
     selectIsPage: (state) => state.page,
+    selectIsCategories: (state) => state.categories,
+    selectIsSex: (state) => state.sex,
+    selectIsSpecies: (state) => state.species,
   },
 });
 
-export const { setPage } = slice.actions;
+export const { setPage, setCategory } = slice.actions;
 
 export const noticesReducer = slice.reducer;
 
@@ -53,4 +95,7 @@ export const {
   selectError,
   selectIsTotalPages,
   selectIsPage,
+  selectIsCategories,
+  selectIsSex,
+  selectIsSpecies,
 } = slice.selectors;

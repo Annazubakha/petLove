@@ -80,7 +80,7 @@ export const Pagination = ({ setPage, totalPages, page }) => {
           <Icon
             id="pagination-left"
             size={leftIcon}
-            className="absolute top-[9px] left-[4px] icon md:top-[9.5px] "
+            className="absolute top-[9px] left-[4px] icon md:top-[9.5px] lg:top-[9px] "
           />
         </button>
 
@@ -109,7 +109,7 @@ export const Pagination = ({ setPage, totalPages, page }) => {
           <Icon id="pagination-right" size={rightIcon} className="icon" />
           <Icon
             id="pagination-right"
-            className="absolute top-[9px] right-[4px] icon md:top-[9.5px]"
+            className="absolute top-[9px] right-[4px] icon md:top-[9.5px] lg:top-[9px]"
             size={rightIcon}
           />
         </button>

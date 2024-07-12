@@ -1,11 +1,12 @@
 import ReactDOM from 'react-dom';
-import { useEffect } from 'react';
 import { Icon } from 'components';
 
+import { useEffect } from 'react';
 const modalRoot =
   document.getElementById('modalRoot') || document.createElement('div');
 modalRoot.id = 'modalRoot';
 document.body.appendChild(modalRoot);
+
 export const Modal = ({ children, toggleModal }) => {
   useEffect(() => {
     const handleEscape = (e) => {
@@ -32,9 +33,9 @@ export const Modal = ({ children, toggleModal }) => {
   return ReactDOM.createPortal(
     <div
       onClick={handleClickOnBackdrop}
-      className=" z-[1501] bg-my-black-30 flex justify-center items-center fixed w-[100vw] h-[100vh] left-0 top-0"
+      className="z-[1501] bg-my-black-30 flex justify-center items-center fixed w-[100vw] h-[100vh] left-0 top-0"
     >
-      <div className="relative bg-my-white rounded-[30px] w-[335px] px-[20px] py-[40px] md:px-[80px] md:py-[80px] md:w-[448px]">
+      <div className="relative bg-my-white rounded-[30px]">
         <button
           className="absolute top-[20px] right-[20px]"
           type="button"
@@ -50,3 +51,5 @@ export const Modal = ({ children, toggleModal }) => {
     modalRoot
   );
 };
+
+//  w-[335px] px-[20px] py-[40px] md:px-[80px] md:py-[80px]

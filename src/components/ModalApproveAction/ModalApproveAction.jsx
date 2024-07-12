@@ -20,7 +20,7 @@ export const ModalApproveAction = ({ toggleModal }) => {
       );
   };
   return (
-    <>
+    <div className="px-[28px] py-[40px] flex flex-col items-center w-[335px] md:w-[448px] md:px-[80px] md:py-[80px]">
       {' '}
       {isLoading && <Loader />}
       <div className="h-[80px] w-[80px] rounded-[50%] bg-my-yellow-light flex items-center justify-center mb-[20px]">
@@ -45,11 +45,11 @@ export const ModalApproveAction = ({ toggleModal }) => {
         </button>
         <button
           onClick={toggleModal}
-          className="font-bold h-[42px] w-[137px] rounded-[30px]  text-[14px] leading-[1.29] tracking-[-0.03em] hover:text-my-yellow-dark  md:h-[48px] md:w-[140px] md:text-[16px] md:leading-[1.25]"
+          className="font-bold h-[42px] w-[137px] rounded-[30px] bg-my-black-5 text-[14px] leading-[1.29] tracking-[-0.03em] hover:text-my-yellow-dark  md:h-[48px] md:w-[140px] md:text-[16px] md:leading-[1.25]"
         >
           Cancel
         </button>
       </div>
-    </>
+    </div>
   );
 };

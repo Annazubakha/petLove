@@ -95,3 +95,19 @@ ul {
 .notices_item_element_span {
   @apply text-my-black-50;
 }
+
+.item_filter {
+  @apply bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] p-[12px];
+}
+
+.dropwown {
+  @apply capitalize bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] w-[143px] flex justify-between items-center px-[12px];
+}
+
+.dropdown_list_item {
+  @apply capitalize cursor-pointer;
+}
+
+.active_item {
+  @apply text-my-yellow;
+}

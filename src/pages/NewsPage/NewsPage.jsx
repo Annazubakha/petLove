@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NewsList, SearchField, Title, Pagination } from '../../components';
+import { NewsList, Title, Pagination, SearchField } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsLoading,
@@ -35,8 +35,10 @@ const NewsPage = () => {
   };
   return (
     <div className="containerBig relative pb-[40px] md:pb-[80px]  ">
-      <Title>News</Title>
-      <SearchField setKeyword={setKeyword} />
+      <div className="flex gap-[20px] flex-col mb-[24px] md:flex-row md:items-center justify-between md:mb-[44px]  lg:mb-[60px]">
+        <Title>News</Title>
+        <SearchField setPage={handlePageChange} setKeyword={setKeyword} />
+      </div>
       {news?.length > 0 ? (
         <>
           <NewsList news={news} />

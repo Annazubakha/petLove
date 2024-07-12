@@ -23,3 +23,6 @@ export * from './SearchField/SearchField';
 export * from './Pagination/Pagination';
 export * from './NoticesItem/NoticesItem';
 export * from './NoticesList/NoticesList';
+export * from './NoticesFilters/NoticesFilters';
+export * from './ModalAttention/ModalAttention';
+export * from './Modal/Modal';
