@@ -97,11 +97,11 @@ ul {
 }
 
 .item_filter {
-  @apply bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] p-[12px];
+  @apply bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] p-[12px] md:h-[48px] md:text-[16px] md:leading-[1.25] md:px-[14px];
 }
 
 .dropwown {
-  @apply capitalize bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] w-[143px] flex justify-between items-center px-[12px];
+  @apply capitalize bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] w-[143px] flex justify-between items-center px-[12px] md:h-[48px] md:text-[16px] md:leading-[1.25] md:w-[170px] md:px-[14px];
 }
 
 .dropdown_list_item {
@@ -110,4 +110,21 @@ ul {
 
 .active_item {
   @apply text-my-yellow;
+}
+
+.dropdown_type {
+  @apply capitalize bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] w-[100%] flex justify-between items-center px-[12px]  md:h-[48px] md:text-[16px] md:leading-[1.25] md:w-[190px] md:px-[14px];
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(38, 38, 38, 0.08);
+  border-radius: 13px;
+}
+
+::-webkit-scrollbar-track {
+  margin-block: 10px;
 }

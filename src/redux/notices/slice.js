@@ -1,5 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
+  fetchCitiesThunk,
   fetchNoticesCategiriesThunk,
   fetchNoticesSexThunk,
   fetchNoticesSpeciesThunk,
@@ -15,6 +16,7 @@ const initialState = {
   categories: [],
   sex: [],
   species: [],
+  cities: [],
 };
 
 const slice = createSlice({
@@ -23,9 +25,6 @@ const slice = createSlice({
   reducers: {
     setPage: (state, action) => {
       state.page = action.payload.page;
-    },
-    setCategory: (state, action) => {
-      state.category = action.payload.category;
     },
   },
   extraReducers: (builder) => {
@@ -48,12 +47,17 @@ const slice = createSlice({
         state.species = payload;
         state.isLoading = false;
       })
+      .addCase(fetchCitiesThunk.fulfilled, (state, { payload }) => {
+        state.cities = payload;
+        state.isLoading = false;
+      })
       .addMatcher(
         isAnyOf(
           fetchNoticesThunk.pending,
           fetchNoticesCategiriesThunk.pending,
           fetchNoticesSexThunk.pending,
-          fetchNoticesSpeciesThunk.pending
+          fetchNoticesSpeciesThunk.pending,
+          fetchCitiesThunk.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -65,7 +69,8 @@ const slice = createSlice({
           fetchNoticesThunk.rejected,
           fetchNoticesCategiriesThunk.rejected,
           fetchNoticesSexThunk.rejected,
-          fetchNoticesSpeciesThunk.rejected
+          fetchNoticesSpeciesThunk.rejected,
+          fetchCitiesThunk.rejected
         ),
         (state, { payload }) => {
           state.error = payload;
@@ -82,6 +87,7 @@ const slice = createSlice({
     selectIsCategories: (state) => state.categories,
     selectIsSex: (state) => state.sex,
     selectIsSpecies: (state) => state.species,
+    selectIsCities: (state) => state.cities,
   },
 });
 
@@ -98,4 +104,5 @@ export const {
   selectIsCategories,
   selectIsSex,
   selectIsSpecies,
+  selectIsCities,
 } = slice.selectors;

@@ -23,7 +23,7 @@ export const SearchField = ({ setKeyword, setPage }) => {
         className={
           location.pathname === '/news'
             ? 'bg-transparent h-[42px] md:h-[48px] md:w-[230px] '
-            : 'bg-my-white border-none placeholder:text-my-black mb-[12px]'
+            : 'bg-my-white border-none placeholder:text-my-black md:w-[265px] lg:h-[48px]'
         }
         placeholder="Search"
         name="query"
@@ -31,7 +31,11 @@ export const SearchField = ({ setKeyword, setPage }) => {
       />
       <button
         type="submit"
-        className="absolute top-[12px] right-[12px] flex items-center justify-center md:top-[14px] "
+        className={
+          location.pathname === '/news'
+            ? 'absolute top-[12px] right-[12px] flex items-center justify-center md:top-[14px] '
+            : 'absolute top-[12px] right-[12px] flex items-center justify-center md:top-[14px]  '
+        }
       >
         <Icon id="search" size={18} />
       </button>

@@ -24,19 +24,28 @@ const NoticesPage = () => {
   const notices = useSelector(selectIsNotices);
   const totalPages = useSelector(selectIsTotalPages);
   const [keyword, setKeyword] = useState('');
-  const [test, setCategory] = useState('');
+  const [category, setCategory] = useState('');
+  const [gender, setGender] = useState('');
+  const [type, setType] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         await dispatch(
-          fetchNoticesThunk({ keyword: keyword, page, category: test })
+          fetchNoticesThunk({
+            keyword: keyword,
+            page,
+            category: category,
+            species: type,
+            sex: gender,
+          })
         ).unwrap();
       } catch {
         toast.error('Something went wrong. Please, reload the page.');
       }
     };
     fetchData();
-  }, [dispatch, keyword, page, test]);
+  }, [dispatch, keyword, page, category, type, gender]);
 
   const handlePageChange = (newPage) => {
     dispatch(setPage({ page: newPage }));
@@ -49,6 +58,8 @@ const NoticesPage = () => {
         setKeyword={setKeyword}
         setPage={handlePageChange}
         setCategory={setCategory}
+        setGender={setGender}
+        setType={setType}
       />
       {notices?.length > 0 ? (
         <>
@@ -63,7 +74,7 @@ const NoticesPage = () => {
         </>
       ) : !isLoading ? (
         <p className="text-[14px] text-center md:text-[28px] mt-[20px] ">
-          There aren&#39;t any news according to your query. Please, try another
+          There aren&#39;t any pets according to your query. Please, try another
           one.
         </p>
       ) : (

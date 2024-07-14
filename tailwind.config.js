@@ -29,6 +29,7 @@ export default {
         'main-bg': '  #f9f9f9',
         'my-black': '#262626',
         'my-black-5': 'rgba(38, 38, 38, 0.05)',
+        'my-black-10': 'rgba(38, 38, 38, 0.1)',
         'my-black-15': 'rgba(38, 38, 38, 0.15)',
         'my-black-30': 'rgba(38, 38, 38, 0.3)',
         'my-black-40': 'rgba(38, 38, 38, 0.4)',
