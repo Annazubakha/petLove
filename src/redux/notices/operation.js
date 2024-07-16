@@ -6,30 +6,28 @@ export const fetchNoticesThunk = createAsyncThunk(
   'get notices',
   async (
     {
-      page = 1,
       keyword = '',
       category = '',
       species = '',
       sex = '',
-      locationId = '',
-      // byDate = '',
-      // byPrice = '',
-      // byPopularity = '',
+      // locationId = '',
+      byPrice = '',
+      byPopularity = '',
+      page = 1,
     },
     thunkAPI
   ) => {
     try {
       const { data } = await instance.get('/notices', {
         params: {
-          page,
           keyword,
           category,
           species,
           sex,
-          locationId,
-          // byDate,
-          // byPrice,
-          // byPopularity,
+          // locationId,
+          byPrice,
+          byPopularity,
+          page,
         },
       });
       console.log(data);

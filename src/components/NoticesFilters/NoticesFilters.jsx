@@ -1,13 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+// import CreatableSelect from 'react-select/creatable';
 import {
+  fetchCitiesThunk,
   fetchNoticesCategiriesThunk,
   fetchNoticesSexThunk,
   fetchNoticesSpeciesThunk,
 } from '../../redux/notices/operation';
 import {
   selectIsCategories,
+  // selectIsCities,
   selectIsSex,
   selectIsSpecies,
 } from '../../redux/notices/slice';
@@ -19,14 +22,22 @@ export const NoticesFilters = ({
   setCategory,
   setGender,
   setType,
+  setPopularity,
+  setPrice,
 }) => {
   const caterogies = useSelector(selectIsCategories);
   const sex = useSelector(selectIsSex);
   const species = useSelector(selectIsSpecies);
+  // const cities = useSelector(selectIsCities);
+  // console.log(cities);
   const [isOpen, setIsOpen] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
   const [selectedType, setSelectedType] = useState('');
+  const [isCheap, setIsCheap] = useState(false);
+  const [isExpensive, setIsExpensive] = useState(false);
+  const [isPopular, setIsPopular] = useState(false);
+  const [isUnpopular, setIsUnpopular] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +45,7 @@ export const NoticesFilters = ({
         await dispatch(fetchNoticesCategiriesThunk()).unwrap();
         await dispatch(fetchNoticesSexThunk()).unwrap();
         await dispatch(fetchNoticesSpeciesThunk()).unwrap();
+        await dispatch(fetchCitiesThunk()).unwrap();
       } catch {
         toast.error('Something went wrong. Please, reload the page.');
       }
@@ -76,7 +88,43 @@ export const NoticesFilters = ({
     setSelectedGender('');
     setSelectedCategory('');
     setSelectedType('');
+    setPopularity(null);
+    setPrice(null);
+    setIsUnpopular(false);
+    setIsPopular(false);
+    setIsExpensive(false);
+    setIsCheap(false);
     document.querySelector('input[name="query"]').value = '';
+  };
+
+  const handleDeleteFilter = (filter) => {
+    switch (filter) {
+      case 'popular':
+        setPopularity(null);
+        setIsPopular(false);
+        break;
+      case 'unpopular':
+        setPopularity(null);
+        setIsUnpopular(false);
+        break;
+      case 'cheap':
+        setPrice(null);
+        setIsCheap(false);
+        break;
+
+      case 'expensive':
+        setPrice(null);
+        setIsExpensive(false);
+        break;
+
+      default:
+        setPrice(null);
+        setPopularity(null);
+        setIsUnpopular(false);
+        setIsPopular(false);
+        setIsExpensive(false);
+        setIsCheap(false);
+    }
   };
   return (
     <div className="bg-my-yellow-light p-[20px] rounded-[30px] mb-[40px] mt-[40px] flex flex-col gap-[12px] md:flex-row md:gap-[16px] md:flex-wrap md:px-[32px] md:py-[40px]">
@@ -193,12 +241,71 @@ export const NoticesFilters = ({
           </ul>
         )}
       </div>
+      {/* <CreatableSelect isClearable options={cities} /> */}
 
       <ul className=" relative flex flex-wrap gap-[10px] mt-[28px] before:h-[1px] before:w-[100%]  before:bg-my-black-10 before:absolute before:top-[-20px] md:before:w-[640px] lg:before:w-[1089px]">
-        <li className="item_filter">Popular</li>
-        <li className="item_filter">Unpopular</li>
-        <li className="item_filter">Cheap</li>
-        <li className="item_filter">Expensive</li>
+        <li
+          className={` ${isPopular ? ' item_filter_active ' : 'item_filter'}`}
+        >
+          <button
+            onClick={() => {
+              setPopularity(false), setIsPopular(true);
+            }}
+          >
+            Popular
+          </button>
+          {isPopular && (
+            <button onClick={() => handleDeleteFilter('popular')}>
+              <Icon id="delete-filter" size={18} />
+            </button>
+          )}
+        </li>
+        <li
+          className={` ${isUnpopular ? ' item_filter_active ' : 'item_filter'}`}
+        >
+          <button
+            onClick={() => {
+              setPopularity(true), setIsUnpopular(true);
+            }}
+          >
+            Unpopular
+          </button>
+          {isUnpopular && (
+            <button onClick={() => handleDeleteFilter('unpopular')}>
+              <Icon id="delete-filter" size={18} />
+            </button>
+          )}
+        </li>
+        <li
+          className={` ${isExpensive ? ' item_filter_active ' : 'item_filter'}`}
+        >
+          <button
+            onClick={() => {
+              setPrice(false), setIsExpensive(true);
+            }}
+          >
+            Expensive
+          </button>
+          {isExpensive && (
+            <button onClick={() => handleDeleteFilter('expensive')}>
+              <Icon id="delete-filter" size={18} />
+            </button>
+          )}
+        </li>
+        <li className={` ${isCheap ? ' item_filter_active ' : 'item_filter'}`}>
+          <button
+            onClick={() => {
+              setPrice(true), setIsCheap(true);
+            }}
+          >
+            Cheap
+          </button>
+          {isCheap && (
+            <button onClick={() => handleDeleteFilter('cheap')}>
+              <Icon id="delete-filter" size={18} />
+            </button>
+          )}
+        </li>
       </ul>
       <button
         type="button"

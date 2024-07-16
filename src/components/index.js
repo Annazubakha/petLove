@@ -26,3 +26,4 @@ export * from './NoticesList/NoticesList';
 export * from './NoticesFilters/NoticesFilters';
 export * from './ModalAttention/ModalAttention';
 export * from './Modal/Modal';
+export * from './ModalNotice/ModalNotice';

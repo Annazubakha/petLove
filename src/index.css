@@ -97,7 +97,10 @@ ul {
 }
 
 .item_filter {
-  @apply bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] p-[12px] md:h-[48px] md:text-[16px] md:leading-[1.25] md:px-[14px];
+  @apply bg-my-white text-my-black text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] p-[12px] md:h-[48px] md:text-[16px] md:leading-[1.25] md:px-[14px] hover:bg-my-yellow hover:text-my-white;
+}
+.item_filter_active {
+  @apply flex gap-[10px] items-center  bg-my-yellow text-my-white text-[14px] leading-[1.29] tracking-[-0.03em] rounded-[30px] h-[42px] p-[12px] md:h-[48px] md:text-[16px] md:leading-[1.25] md:px-[14px] hover:bg-my-yellow-dark;
 }
 
 .dropwown {
