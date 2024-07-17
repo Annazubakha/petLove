@@ -1,5 +1,14 @@
+import { useSelector } from 'react-redux';
+import { UserCard } from '../../components';
+import { selectUser } from '../../redux/auth/slice';
+
 const ProfilePage = () => {
-  return <div>ProfilePage</div>;
+  const user = useSelector(selectUser);
+  return (
+    <div className="containerBig">
+      <UserCard user={user} />
+    </div>
+  );
 };
 
 export default ProfilePage;

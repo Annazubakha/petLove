@@ -74,13 +74,16 @@ ul {
     @apply text-my-white bg-my-yellow border-my-yellow;
   }
 }
+.icon_pagination {
+  @apply fill-my-black;
+}
 
-.btn_pagination:hover .icon,
-.btn_pagination_double:hover .icon {
+.btn_pagination:hover .icon_pagination,
+.btn_pagination_double:hover .icon_pagination {
   @apply fill-my-white;
 }
-.btn_pagination:disabled .icon,
-.btn_pagination_double:disabled .icon {
+.btn_pagination:disabled .icon_pagination,
+.btn_pagination_double:disabled .icon_pagination {
   @apply opacity-50 fill-my-black;
 }
 
@@ -130,4 +133,70 @@ ul {
 
 ::-webkit-scrollbar-track {
   margin-block: 10px;
+}
+/**
+  |============================
+  | styles select cities
+  |============================
+*/
+
+.css-w9q2zk-Input2 {
+  height: 42px !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+@media screen and (min-width: 768px) {
+  .css-w9q2zk-Input2 {
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+}
+
+.css-1u9des2-indicatorSeparator {
+  display: none !important;
+}
+
+.css-13cymwt-control {
+  background-color: white !important;
+  border-radius: 30px !important;
+  border: none !important;
+}
+.css-t3ipsp-control {
+  background-color: white !important;
+  border-radius: 30px !important;
+  border-color: #f6b83d !important;
+  box-shadow: none !important
+  ;
+}
+.css-t3ipsp-control:hover {
+  border-color: #f6b83d !important;
+}
+
+.css-art2ul-ValueContainer2 {
+  height: 42px;
+  padding: 0 0 0 12px !important;
+}
+
+@media screen and (min-width: 768px) {
+  .css-art2ul-ValueContainer2 {
+    height: 48px;
+    padding: 0 0 0 14px !important;
+  }
+}
+.css-1jqq78o-placeholder {
+  font-size: 14px !important;
+  color: #262626 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .css-1jqq78o-placeholder {
+    font-size: 16px !important;
+  }
+}
+
+.css-4xgw5l-IndicatorsContainer2 {
+  padding-right: 12px;
+  display: flex !important;
+  gap: 2px !important;
 }

@@ -10,7 +10,7 @@ export const fetchNoticesThunk = createAsyncThunk(
       category = '',
       species = '',
       sex = '',
-      // locationId = '',
+      locationId = '',
       byPrice = '',
       byPopularity = '',
       page = 1,
@@ -24,13 +24,12 @@ export const fetchNoticesThunk = createAsyncThunk(
           category,
           species,
           sex,
-          // locationId,
+          locationId,
           byPrice,
           byPopularity,
           page,
         },
       });
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

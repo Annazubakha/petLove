@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-// import CreatableSelect from 'react-select/creatable';
+import Select from 'react-select/creatable';
 import {
   fetchCitiesThunk,
   fetchNoticesCategiriesThunk,
@@ -10,7 +10,7 @@ import {
 } from '../../redux/notices/operation';
 import {
   selectIsCategories,
-  // selectIsCities,
+  selectIsCities,
   selectIsSex,
   selectIsSpecies,
 } from '../../redux/notices/slice';
@@ -24,12 +24,12 @@ export const NoticesFilters = ({
   setType,
   setPopularity,
   setPrice,
+  // setLocationId,
 }) => {
   const caterogies = useSelector(selectIsCategories);
   const sex = useSelector(selectIsSex);
   const species = useSelector(selectIsSpecies);
-  // const cities = useSelector(selectIsCities);
-  // console.log(cities);
+  const cities = useSelector(selectIsCities);
   const [isOpen, setIsOpen] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
@@ -126,6 +126,17 @@ export const NoticesFilters = ({
         setIsCheap(false);
     }
   };
+  const [selectedCity, setSelectedCity] = useState(null);
+  const handleCityChange = (selectedOption) => {
+    console.log(selectedOption);
+    setSelectedCity(selectedOption);
+    // setLocationId(locationId);
+  };
+  const cityOptions = cities.map((city) => ({
+    value: `${city.stateEn}, ${city.cityEn}`,
+    label: `${city.stateEn}, ${city.cityEn}`,
+  }));
+
   return (
     <div className="bg-my-yellow-light p-[20px] rounded-[30px] mb-[40px] mt-[40px] flex flex-col gap-[12px] md:flex-row md:gap-[16px] md:flex-wrap md:px-[32px] md:py-[40px]">
       <SearchField setKeyword={setKeyword} setPage={setPage} />
@@ -241,7 +252,17 @@ export const NoticesFilters = ({
           </ul>
         )}
       </div>
-      {/* <CreatableSelect isClearable options={cities} /> */}
+      <Select
+        value={selectedCity}
+        onChange={handleCityChange}
+        options={cityOptions}
+        placeholder="Location"
+        isClearable
+        components={{
+          DropdownIndicator: CustomDropdownIndicator,
+          ClearIndicator: CustomDeleteIndicator,
+        }}
+      />
 
       <ul className=" relative flex flex-wrap gap-[10px] mt-[28px] before:h-[1px] before:w-[100%]  before:bg-my-black-10 before:absolute before:top-[-20px] md:before:w-[640px] lg:before:w-[1089px]">
         <li
@@ -316,4 +337,12 @@ export const NoticesFilters = ({
       </button>
     </div>
   );
+};
+
+const CustomDropdownIndicator = () => {
+  return <Icon id="search" size={18} />;
+};
+
+const CustomDeleteIndicator = () => {
+  return <Icon id="close" className="stroke-my-black" size={18} />;
 };

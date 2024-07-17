@@ -22,8 +22,10 @@ export const useIconSizeHook = (id) => {
       break;
     case 'pagination-left':
     case 'pagination-right':
+    case 'user':
       size = widthMobile ? 20 : 24;
       break;
+
     default:
       size = 18;
   }

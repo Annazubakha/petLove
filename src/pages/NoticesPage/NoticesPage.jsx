@@ -29,6 +29,7 @@ const NoticesPage = () => {
   const [type, setType] = useState('');
   const [popularity, setPopularity] = useState(null);
   const [price, setPrice] = useState(null);
+  const [locationId, setLocationId] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,6 +42,7 @@ const NoticesPage = () => {
             sex: gender,
             byPrice: price,
             byPopularity: popularity,
+            locationId: locationId,
           })
         ).unwrap();
       } catch {
@@ -48,7 +50,17 @@ const NoticesPage = () => {
       }
     };
     fetchData();
-  }, [dispatch, keyword, page, category, type, gender, popularity, price]);
+  }, [
+    dispatch,
+    keyword,
+    page,
+    category,
+    type,
+    gender,
+    popularity,
+    price,
+    locationId,
+  ]);
 
   const handlePageChange = (newPage) => {
     dispatch(setPage({ page: newPage }));
@@ -65,6 +77,7 @@ const NoticesPage = () => {
         setType={setType}
         setPopularity={setPopularity}
         setPrice={setPrice}
+        setLocationId={setLocationId}
       />
       {notices?.length > 0 ? (
         <>

@@ -10,15 +10,16 @@ import {
   LogOutBtn,
   Modal,
   ModalApproveAction,
+  UserBar,
 } from 'components';
 import { useIconSizeHook, useModal, useWindowSizeHook } from '../../helpers';
-import { selectIsLoggedIn } from '../../redux/auth/slice';
+import { selectIsLoggedIn, selectUser } from '../../redux/auth/slice';
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const size = useWindowSizeHook();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-
+  const user = useSelector(selectUser);
   const [isModalLogOut, toggleIsModalLogOut] = useModal();
   const toggleBurgerMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -39,11 +40,12 @@ export const Header = () => {
       >
         <Logo />
         {size.windowSize.innerWidth >= 1280 && <Nav />}
-        <div className="flex gap-[16px]">
+        <div className="flex gap-[12px]">
           {!isLoggedIn && size.windowSize.innerWidth >= 768 && <AuthNav />}
           {isLoggedIn && size.windowSize.innerWidth >= 1280 && (
             <LogOutBtn toggleIsModalLogOut={toggleIsModalLogOut} />
           )}
+          {isLoggedIn && <UserBar user={user} />}
           <button onClick={toggleBurgerMenu} className="lg:hidden">
             <Icon
               id="burger"
@@ -56,6 +58,7 @@ export const Header = () => {
             />
           </button>
         </div>
+
         {isMobileMenuOpen && <BurgerMenu toggleBurgerMenu={toggleBurgerMenu} />}
         {isModalLogOut && (
           <Modal toggleModal={toggleIsModalLogOut}>

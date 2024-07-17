@@ -76,11 +76,15 @@ export const Pagination = ({ setPage, totalPages, page }) => {
           disabled={page === 1}
           onClick={handleFirstPage}
         >
-          <Icon id="pagination-left" size={leftIcon} className="icon" />
           <Icon
             id="pagination-left"
             size={leftIcon}
-            className="absolute top-[9px] left-[4px] icon md:top-[9.5px] lg:top-[9px] "
+            className="icon_pagination"
+          />
+          <Icon
+            id="pagination-left"
+            size={leftIcon}
+            className="icon_pagination absolute top-[9px] left-[4px] icon md:top-[9.5px] lg:top-[9px] "
           />
         </button>
 
@@ -89,7 +93,11 @@ export const Pagination = ({ setPage, totalPages, page }) => {
           onClick={handlePrevPage}
           disabled={page === 1}
         >
-          <Icon id="pagination-left" size={leftIcon} className="icon" />
+          <Icon
+            id="pagination-left"
+            size={leftIcon}
+            className="icon_pagination"
+          />
         </button>
       </div>
       <div className="flex gap-[10px] ">{renderPageNumbers()}</div>
@@ -99,17 +107,25 @@ export const Pagination = ({ setPage, totalPages, page }) => {
           onClick={handleNextPage}
           disabled={totalPages === page}
         >
-          <Icon id="pagination-right" size={rightIcon} className="icon" />
+          <Icon
+            id="pagination-right"
+            size={rightIcon}
+            className="icon_pagination"
+          />
         </button>
         <button
           className="btn_pagination_double "
           onClick={handleLastPage}
           disabled={totalPages === page}
         >
-          <Icon id="pagination-right" size={rightIcon} className="icon" />
           <Icon
             id="pagination-right"
-            className="absolute top-[9px] right-[4px] icon md:top-[9.5px] lg:top-[9px]"
+            size={rightIcon}
+            className="icon_pagination"
+          />
+          <Icon
+            id="pagination-right"
+            className="icon_pagination absolute top-[9px] right-[4px] icon md:top-[9.5px] lg:top-[9px]"
             size={rightIcon}
           />
         </button>
