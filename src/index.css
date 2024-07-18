@@ -174,13 +174,13 @@ ul {
 }
 
 .css-art2ul-ValueContainer2 {
-  height: 42px;
+  height: 42px !important;
   padding: 0 0 0 12px !important;
 }
 
 @media screen and (min-width: 768px) {
   .css-art2ul-ValueContainer2 {
-    height: 48px;
+    height: 48px !important;
     padding: 0 0 0 14px !important;
   }
 }
@@ -196,7 +196,45 @@ ul {
 }
 
 .css-4xgw5l-IndicatorsContainer2 {
-  padding-right: 12px;
+  padding-right: 12px !important;
   display: flex !important;
   gap: 2px !important;
+}
+
+@media screen and (min-width: 768px) {
+  .css-13cymwt-control {
+    width: 190px !important;
+  }
+}
+
+/**
+  |============================
+  | timepicker styles
+  |============================
+*/
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #f6b83d !important;
+}
+
+.react-datepicker__header {
+  background-color: #fbe7c1 !important;
+  border-bottom: 1px solid #f6b83d !important;
+}
+
+.react-datepicker {
+  border: none !important;
+  font-family: inherit !important;
+}
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #f6b83d !important;
+}
+
+.react-datepicker-popper {
+  left: 47px !important;
 }

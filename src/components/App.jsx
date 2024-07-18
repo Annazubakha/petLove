@@ -16,6 +16,8 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage/NotFoundPage'));
 const ProfilePage = lazy(() => import('pages/ProfilePage/ProfilePage'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
+const AddPetPage = lazy(() => import('pages/AddPetPage/AddPetPage'));
+
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const token = useSelector(selectToken);
@@ -84,6 +86,14 @@ export const App = () => {
             element={
               <PrivateRoute>
                 <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-pet"
+            element={
+              <PrivateRoute>
+                <AddPetPage />
               </PrivateRoute>
             }
           />

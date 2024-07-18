@@ -64,6 +64,7 @@ export const ModalEditUser = ({ user, toggleModal }) => {
             {...register('avatar')}
             placeholder="Avatar link"
             defaultValue={user.avatar || ''}
+            className="truncate pr-[20px]"
           />
           <button
             className="bg-my-yellow-light flex gap-[8px] items-center justify-center h-[42px] min-w-[126px] rounded-[30px] text-[12px]  leading-[1.33]  hover:bg-my-yellow-light-hover focus:bg-my-yellow-light-hover md:mt-[48px] md:h-[52px] md:text-[16px] md:leading-[1.25]"

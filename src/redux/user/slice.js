@@ -1,14 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { UserUpdateThunk } from './operations';
+import { UserUpdateThunk, addPetThunk } from './operations';
 
 const initialState = {
   name: null,
   email: null,
   phone: null,
   avatar: null,
-
   error: null,
   isLoading: false,
+  pet: null,
 };
 
 const slice = createSlice({
@@ -21,17 +21,30 @@ const slice = createSlice({
         state.email = payload.email;
         state.phone = payload.phone;
         state.avatar = payload.avatar;
-        state.isLoggedIn = true;
-        state.isLoading = false;
       })
-      .addMatcher(isAnyOf(UserUpdateThunk.pending), (state) => {
-        state.isLoading = true;
-        state.error = null;
+      .addCase(addPetThunk.fulfilled, (state, { payload }) => {
+        state.pets = payload;
       })
-      .addMatcher(isAnyOf(UserUpdateThunk.rejected), (state, { payload }) => {
-        state.error = payload;
-        state.isLoading = false;
-      });
+      .addMatcher(
+        isAnyOf(UserUpdateThunk.fulfilled, addPetThunk.fulfilled),
+        (state) => {
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(UserUpdateThunk.pending, addPetThunk.pending),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(UserUpdateThunk.rejected, addPetThunk.rejected),
+        (state, { payload }) => {
+          state.error = payload;
+          state.isLoading = false;
+        }
+      );
   },
   selectors: {
     selectError: (state) => state.error,
@@ -41,4 +54,4 @@ const slice = createSlice({
 
 export const userReducer = slice.reducer;
 
-export const { selectUser, selectError, selectIsLoading } = slice.selectors;
+export const { selectError, selectIsLoading } = slice.selectors;

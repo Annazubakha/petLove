@@ -34,3 +34,4 @@ export * from './ModalEditUser/ModalEditUser';
 export * from './PetsBlock/PetsBlock';
 export * from './AddPet/AddPet';
 export * from './PetsList/PetsList';
+export * from './AddPetForm/AddPetForm';

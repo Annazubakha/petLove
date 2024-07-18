@@ -13,3 +13,18 @@ export const UserUpdateThunk = createAsyncThunk(
     }
   }
 );
+
+export const addPetThunk = createAsyncThunk(
+  'add user pet',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await instance.post(
+        '/users/current/pets/add',
+        credentials
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -1,6 +1,6 @@
 import { useModal } from '../../helpers';
 import { ModalEditUser } from '../ModalEditUser/ModalEditUser';
-import { EditUserBtn, Modal, Icon, PetsBlock } from '../index';
+import { EditUserBtn, Modal, Icon, PetsBlock, LogOutBtn } from '../index';
 
 export const UserCard = ({ user }) => {
   const [isModalEditUser, toggleIsModalEditUser] = useModal();
@@ -40,7 +40,7 @@ export const UserCard = ({ user }) => {
             {user.email}
           </div>
           <div
-            className={`${'w-[295px] h-[42px] border-[1px] rounded-[30px] pl-[12px] flex items-center'} ${
+            className={`${'w-[295px] h-[42px] border-[1px] rounded-[30px] pl-[12px] mb-[40px] flex items-center'} ${
               user.phone ? 'border-my-yellow ' : ' border-my-black-15 '
             }`}
           >
@@ -48,6 +48,7 @@ export const UserCard = ({ user }) => {
           </div>
         </div>
         <PetsBlock />
+        <LogOutBtn />
       </div>
       {isModalEditUser && (
         <Modal toggleModal={toggleIsModalEditUser}>
