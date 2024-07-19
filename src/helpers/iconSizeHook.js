@@ -29,7 +29,10 @@ export const useIconSizeHook = (id) => {
       size = widthMobile ? 20 : 24;
       break;
     case 'paw':
-      size = widthMobile ? 34 : 24;
+      size = widthMobile ? 34 : 44;
+      break;
+    case 'bin':
+      size = widthMobile ? 16 : 18;
       break;
     default:
       size = 18;

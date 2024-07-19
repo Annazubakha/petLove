@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { PetDecorationTab } from 'components';
 
 export const PetBlock = ({
@@ -14,6 +15,7 @@ export const PetBlock = ({
   petImg2,
   petImg1,
 }) => {
+  const location = useLocation();
   return (
     <div className="relative">
       <picture>
@@ -35,13 +37,17 @@ export const PetBlock = ({
           alt="Content photo"
         />
       </picture>
-      <PetDecorationTab
-        name={name}
-        birthday={birthday}
-        description={description}
-        petImg1={petImg1}
-        petImg2={petImg2}
-      />
+      {location.pathname === '/add-pet' ? (
+        ' '
+      ) : (
+        <PetDecorationTab
+          name={name}
+          birthday={birthday}
+          description={description}
+          petImg1={petImg1}
+          petImg2={petImg2}
+        />
+      )}
     </div>
   );
 };

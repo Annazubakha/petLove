@@ -66,3 +66,48 @@ export const fetchUserInfoThunk = createAsyncThunk(
     }
   }
 );
+
+/**
+  |============================
+  | 
+  |============================
+*/
+
+export const UserUpdateThunk = createAsyncThunk(
+  'update user info',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await instance.patch('/users/current/edit', credentials);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addPetThunk = createAsyncThunk(
+  'add user pet',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await instance.post(
+        '/users/current/pets/add',
+        credentials
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deletePetThunk = createAsyncThunk(
+  'delete user pet',
+  async (id, thunkAPI) => {
+    try {
+      await instance.delete(`/users/current/pets/remove/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

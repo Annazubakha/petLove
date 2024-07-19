@@ -39,7 +39,6 @@ export const RegisterForm = () => {
         return;
       }
       const response = await dispatch(registerThunk(restData));
-      console.log(response);
       navigate('/profile');
 
       if (response.error) {

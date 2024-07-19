@@ -9,7 +9,7 @@ import petImg5 from '../../assets/img/add-pet/img@1x_desktop.png';
 import petImg6 from '../../assets/img/add-pet/img@2x_desktop.png';
 const AddPetPage = () => {
   return (
-    <div className="containerBig">
+    <div className="containerBig lg:flex lg:gap-[32px]">
       <PetBlock
         Img1={petImg1}
         Img2={petImg2}

@@ -5,6 +5,7 @@ import { PrivateRoute, PublicRoute } from '../routes';
 import { SharedLayout } from 'components';
 import { selectIsLoggedIn, selectToken } from '../redux/auth/slice';
 import { fetchUserInfoThunk } from '../redux/auth/operations';
+import { fetchNoticesSpeciesThunk } from '../redux/notices/operation';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() =>
@@ -23,11 +24,18 @@ export const App = () => {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (token && !isLoggedIn) {
+    dispatch(fetchNoticesSpeciesThunk());
+  });
+  // useEffect(() => {
+  //   if (token && !isLoggedIn) {
+  //     dispatch(fetchUserInfoThunk());
+  //   }
+  // }, [dispatch, isLoggedIn, token]);
+  useEffect(() => {
+    if (token) {
       dispatch(fetchUserInfoThunk());
     }
-  }, [dispatch, isLoggedIn, token]);
-
+  }, [dispatch, token]);
   const link = isLoggedIn ? '/profile' : '/home';
   return (
     <>

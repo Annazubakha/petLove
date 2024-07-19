@@ -6,7 +6,7 @@ import {
   fetchCitiesThunk,
   fetchNoticesCategiriesThunk,
   fetchNoticesSexThunk,
-  fetchNoticesSpeciesThunk,
+  // fetchNoticesSpeciesThunk,
 } from '../../redux/notices/operation';
 import {
   selectIsCategories,
@@ -44,7 +44,7 @@ export const NoticesFilters = ({
       try {
         await dispatch(fetchNoticesCategiriesThunk()).unwrap();
         await dispatch(fetchNoticesSexThunk()).unwrap();
-        await dispatch(fetchNoticesSpeciesThunk()).unwrap();
+        // await dispatch(fetchNoticesSpeciesThunk()).unwrap();
         await dispatch(fetchCitiesThunk()).unwrap();
       } catch {
         toast.error('Something went wrong. Please, reload the page.');

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Icon, Modal, ModalAttention, ModalNotice } from '../index';
 import { selectIsLoggedIn } from '../../redux/auth/slice';
-import { useModal } from '../../helpers';
+import { formattedBirthday, useModal } from '../../helpers';
 
 export const NoticesItem = ({
   birthday,
@@ -46,7 +46,7 @@ export const NoticesItem = ({
           </li>
           <li className="notices_item_element ">
             <span className="notices_item_element_span">Birthday</span>
-            {birthday}
+            {formattedBirthday(birthday) || ''}
           </li>
           <li className="notices_item_element ">
             <span className="notices_item_element_span">Sex</span>
