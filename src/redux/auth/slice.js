@@ -1,7 +1,9 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   UserUpdateThunk,
+  addFavoritePetThunk,
   addPetThunk,
+  deleteFavoritePetThunk,
   deletePetThunk,
   fetchUserInfoThunk,
   loginThunk,
@@ -46,6 +48,15 @@ const slice = createSlice({
         );
         state.user.pets.splice(index, 1);
       })
+      .addCase(addFavoritePetThunk.fulfilled, (state, { payload }) => {
+        state.user.noticesFavorites.push(payload);
+      })
+      .addCase(deleteFavoritePetThunk.fulfilled, (state, { payload }) => {
+        const index = state.user.noticesFavorites.findIndex(
+          (pet) => pet._id === payload.id
+        );
+        state.user.noticesFavorites.splice(index, 1);
+      })
       .addCase(registerThunk.fulfilled, (state, { payload: { token } }) => {
         state.token = token;
         state.isLoggedIn = true;
@@ -74,49 +85,9 @@ const slice = createSlice({
           registerThunk.pending,
           loginThunk.pending,
           logoutThunk.pending,
-          fetchUserInfoThunk.pending
-        ),
-        (state) => {
-          state.isLoading = true;
-          state.error = null;
-        }
-      )
-      .addMatcher(
-        isAnyOf(
-          registerThunk.fulfilled,
-          loginThunk.fulfilled,
-          logoutThunk.fulfilled,
-          fetchUserInfoThunk.fulfilled
-        ),
-        (state) => {
-          state.isLoading = false;
-        }
-      )
-      .addMatcher(
-        isAnyOf(
-          loginThunk.rejected,
-          registerThunk.rejected,
-          logoutThunk.rejected,
-          fetchUserInfoThunk.rejected
-        ),
-        (state, { payload }) => {
-          state.error = payload;
-          state.isLoading = false;
-        }
-      )
-      // gggggggggggggg
-      .addMatcher(
-        isAnyOf(
-          UserUpdateThunk.fulfilled,
-          addPetThunk.fulfilled,
-          deletePetThunk.fulfilled
-        ),
-        (state) => {
-          state.isLoading = false;
-        }
-      )
-      .addMatcher(
-        isAnyOf(
+          fetchUserInfoThunk.pending,
+          addFavoritePetThunk.pending,
+          deleteFavoritePetThunk.pending,
           UserUpdateThunk.pending,
           addPetThunk.pending,
           deletePetThunk.pending
@@ -128,6 +99,28 @@ const slice = createSlice({
       )
       .addMatcher(
         isAnyOf(
+          registerThunk.fulfilled,
+          loginThunk.fulfilled,
+          logoutThunk.fulfilled,
+          fetchUserInfoThunk.fulfilled,
+          addFavoritePetThunk.fulfilled,
+          deleteFavoritePetThunk.fulfilled,
+          UserUpdateThunk.fulfilled,
+          addPetThunk.fulfilled,
+          deletePetThunk.fulfilled
+        ),
+        (state) => {
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          loginThunk.rejected,
+          registerThunk.rejected,
+          logoutThunk.rejected,
+          fetchUserInfoThunk.rejected,
+          addFavoritePetThunk.rejected,
+          deleteFavoritePetThunk.rejected,
           UserUpdateThunk.rejected,
           addPetThunk.rejected,
           deletePetThunk.rejected
@@ -145,6 +138,8 @@ const slice = createSlice({
     selectIsLoggedIn: (state) => state.isLoggedIn,
     selectError: (state) => state.error,
     selectIsLoading: (state) => state.isLoading,
+    selectNoticesFavorites: (state) => state.user.noticesFavorites,
+    selectNoticesViewed: (state) => state.user.noticesViewed,
   },
 });
 
@@ -157,4 +152,6 @@ export const {
   selectIsLoggedIn,
   selectError,
   selectIsLoading,
+  selectNoticesFavorites,
+  selectNoticesViewed,
 } = slice.selectors;

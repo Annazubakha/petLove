@@ -1,13 +1,21 @@
 import { useModal } from '../../helpers';
 import { ModalEditUser } from '../ModalEditUser/ModalEditUser';
-import { EditUserBtn, Modal, Icon, PetsBlock, LogOutBtn } from '../index';
+import {
+  EditUserBtn,
+  Modal,
+  Icon,
+  PetsBlock,
+  LogOutBtn,
+  ModalApproveAction,
+  MyNotices,
+} from '../index';
 
 export const UserCard = ({ user }) => {
   const [isModalEditUser, toggleIsModalEditUser] = useModal();
-
+  const [isModalLogOut, toggleIsModalLogOut] = useModal();
   return (
     <>
-      <div className="bg-my-white rounded-[30px] pt-[18px] px-[20px] pb-[40px] md:p-[40px] ">
+      <div className="bg-my-white rounded-[30px] pt-[18px] px-[20px] pb-[40px] mb-[40px] md:p-[40px] md:mb-[32px]">
         <div className="flex justify-between">
           <div className="h-[38px] bg-my-yellow text-my-white text-[14px]tracking-[-0.03em] leading-[1.29] flex gap-[4px] rounded-[30px] px-[14px] items-center ">
             User <Icon id="user-white" size={18} />
@@ -50,13 +58,19 @@ export const UserCard = ({ user }) => {
           </div>
         </div>
         <PetsBlock />
-        <LogOutBtn />
+        <LogOutBtn toggleIsModalLogOut={toggleIsModalLogOut} />
       </div>
       {isModalEditUser && (
         <Modal toggleModal={toggleIsModalEditUser}>
           <ModalEditUser toggleModal={toggleIsModalEditUser} user={user} />
         </Modal>
       )}
+      {isModalLogOut && (
+        <Modal toggleModal={toggleIsModalLogOut}>
+          <ModalApproveAction toggleModal={toggleIsModalLogOut} />
+        </Modal>
+      )}
+      <MyNotices />
     </>
   );
 };

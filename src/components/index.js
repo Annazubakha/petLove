@@ -36,3 +36,5 @@ export * from './AddPet/AddPet';
 export * from './PetsList/PetsList';
 export * from './AddPetForm/AddPetForm';
 export * from './PetsItem/PetsItem';
+export * from './MyNotices/MyNotices';
+export * from './ModalNotice/Rating';

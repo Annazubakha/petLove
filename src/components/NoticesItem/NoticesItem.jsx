@@ -1,7 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 import { Icon, Modal, ModalAttention, ModalNotice } from '../index';
 import { selectIsLoggedIn } from '../../redux/auth/slice';
-import { formattedBirthday, useModal } from '../../helpers';
+import { formattedBirthday, useIconSizeHook, useModal } from '../../helpers';
+import {
+  deleteFavoritePetThunk,
+  fetchUserInfoThunk,
+} from '../../redux/auth/operations';
 
 export const NoticesItem = ({
   birthday,
@@ -13,10 +19,24 @@ export const NoticesItem = ({
   popularity,
   title,
   species,
+  _id,
 }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isModalAttention, toggleIsModalAttention] = useModal();
   const [isModalNotice, toggleIsModalNotice] = useModal();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const iconSize = useIconSizeHook('bin');
+  const isProfilePage = location.pathname === '/profile';
+
+  const handleDeleteFavoritePet = async () => {
+    try {
+      await dispatch(deleteFavoritePetThunk(_id));
+      await dispatch(fetchUserInfoThunk());
+    } catch {
+      toast.error('Something went wrong. Please try again.');
+    }
+  };
   return (
     <>
       <li className="rounded-[16px] bg-my-white p-[24px] md:w-[342px] flex flex-col lg:w-[363px]">
@@ -65,19 +85,41 @@ export const NoticesItem = ({
           {comment}
         </p>
 
-        <div className="flex gap-[10px] md:mt-auto ">
+        <div className="flex gap-[10px] md:mt-auto relative">
           <button
             onClick={isLoggedIn ? toggleIsModalNotice : toggleIsModalAttention}
-            className="bg-my-yellow w-[231px] h-[46px] rounded-[30px] flex items-center justify-center text-my-white text-[14px] leading-[1.29] tracking-[-0.03em] hover:bg-my-yellow-dark md:h-[48px] lg:w-[257px]"
+            className={`${'bg-my-yellow w-[231px]  rounded-[30px] flex items-center justify-center text-my-white text-[14px] leading-[1.29] tracking-[-0.03em] hover:bg-my-yellow-dark  lg:w-[257px] '} ${
+              isProfilePage ? '   h-[44px]' : '  h-[46px] md:h-[48px]'
+            }`}
           >
             Learn more
           </button>
-          <button
-            onClick={isLoggedIn ? toggleIsModalNotice : toggleIsModalAttention}
-            className="bg-my-yellow-light w-[46px] h-[46px] rounded-[30px] flex items-center justify-center hover:bg-my-yellow-light-hover md:h-[48px] md:w-[48px]"
-          >
-            <Icon id="heart" size={18} className="fill-none stroke-my-yellow" />
-          </button>
+          {isProfilePage ? (
+            <button
+              type="sumbit"
+              onClick={handleDeleteFavoritePet}
+              className={`${' bg-my-yellow-light hover:bg-my-yellow-light-hover focus:bg-my-yellow-light-hover rounded-full  flex items-center justify-center '} ${
+                isProfilePage
+                  ? '  w-[44px] h-[44px]'
+                  : 'absolute top-[12px] right-[12px] w-[32px] h-[32px]'
+              }`}
+            >
+              <Icon id="bin" size={iconSize} />
+            </button>
+          ) : (
+            <button
+              onClick={
+                isLoggedIn ? toggleIsModalNotice : toggleIsModalAttention
+              }
+              className="bg-my-yellow-light w-[46px] h-[46px] rounded-[30px] flex items-center justify-center hover:bg-my-yellow-light-hover md:h-[48px] md:w-[48px]"
+            >
+              <Icon
+                id="heart"
+                size={18}
+                className="fill-none stroke-my-yellow"
+              />
+            </button>
+          )}
         </div>
       </li>
       {isModalAttention && (
@@ -97,6 +139,7 @@ export const NoticesItem = ({
             title={title}
             species={species}
             category={category}
+            _id={_id}
           />
         </Modal>
       )}

@@ -2,7 +2,10 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Icon } from '../index';
 import { formattedBirthday, useIconSizeHook } from '../../helpers';
-import { deletePetThunk } from '../../redux/auth/operations';
+import {
+  deletePetThunk,
+  fetchUserInfoThunk,
+} from '../../redux/auth/operations';
 
 export const PetsItem = ({
   name,
@@ -13,26 +16,26 @@ export const PetsItem = ({
   birthday,
   _id,
 }) => {
-  const text = formattedBirthday(birthday);
-
+  const formattedBrthday = formattedBirthday(birthday);
   const dispatch = useDispatch();
   const handleDeletePet = async () => {
     try {
       await dispatch(deletePetThunk(_id));
       toast.success('Pet was deleted successfully.');
+      await dispatch(fetchUserInfoThunk());
     } catch {
       toast.error('Something went wrong. Please try again.');
     }
   };
   return (
-    <li className=" relative rounded-[20px]  p-[16px]  flex  gap-[14px] border-[1px] border-my-black-10">
+    <li className=" relative rounded-[20px]  p-[16px]  flex  gap-[14px] border-[1px] border-my-black-10 md:w-[305px] md:pt-[22px] md:px-[16px] md:pr-[27px]">
       <img
         src={imgURL}
         alt="Pet's photo"
-        className="rounded-full h-[66px] w-[66px]"
+        className="rounded-full h-[66px] w-[66px] md:h-[75px] md:w-[75px]"
       />
-      <div className="relative ">
-        <h1 className="font-bold leading-[1.29] text-[14px] mb-[8px] text-my-black-second truncate ">
+      <div className="relative">
+        <h1 className="font-bold leading-[1.29] text-[14px] mb-[8px] text-my-black-second truncate md:mb-[12px]">
           {title}
         </h1>
 
@@ -43,7 +46,7 @@ export const PetsItem = ({
           </li>
           <li className="notices_item_element ">
             <span className="notices_item_element_span">Birthday</span>
-            {text}
+            {formattedBrthday}
           </li>
           <li className="notices_item_element ">
             <span className="notices_item_element_span">Sex</span>

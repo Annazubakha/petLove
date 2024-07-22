@@ -5,7 +5,9 @@ export const PetsBlock = () => {
     <>
       <div className="flex justify-between items-center mb-[20px]">
         {' '}
-        <p className="font-bold leading-[1.25]">My pets</p>
+        <p className="font-bold leading-[1.25] md:text-[18px] md:leading-[1.33]">
+          My pets
+        </p>
         <AddPet />
       </div>
       <PetsList />

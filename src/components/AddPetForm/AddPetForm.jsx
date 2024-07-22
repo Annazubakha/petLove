@@ -8,7 +8,7 @@ import { addPetSchema } from '../../schemas';
 import { toast } from 'react-toastify';
 import { Icon, Loader } from '../index';
 import { selectIsLoading } from '../../redux/auth/slice';
-import { addPetThunk } from '../../redux/auth/operations';
+import { addPetThunk, fetchUserInfoThunk } from '../../redux/auth/operations';
 import { convertPetBirthday, useIconSizeHook } from '../../helpers';
 import { selectIsSpecies } from '../../redux/notices/slice';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -42,10 +42,10 @@ export const AddPetForm = () => {
       birthday: formatedBirthday,
     };
     try {
-      console.log(formattedData);
       await dispatch(addPetThunk(formattedData));
       toast.success('Pet was added successful.');
       navigate('/profile');
+      await dispatch(fetchUserInfoThunk());
     } catch {
       toast.error('Something went wrong. Please, try again.');
     }

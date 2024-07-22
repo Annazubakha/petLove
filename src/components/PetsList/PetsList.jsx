@@ -8,11 +8,17 @@ export const PetsList = () => {
   return (
     <>
       {isLoading && <Loader size={30} />}
-      <ul className="flex flex-col gap-[14px] mb-[20px]">
-        {user.pets?.map((pet) => (
-          <PetsItem key={pet._id} {...pet} />
-        ))}
-      </ul>
+      {user.pets.length === 0 ? (
+        <p className="mb-[20px] md:text-[18px]">
+          You don&#39;t have any pets..
+        </p>
+      ) : (
+        <ul className="flex flex-col gap-[14px] mb-[20px] md:flex-row md:flex-wrap">
+          {user.pets?.map((pet) => (
+            <PetsItem key={pet._id} {...pet} />
+          ))}
+        </ul>
+      )}
     </>
   );
 };

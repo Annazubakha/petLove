@@ -161,6 +161,7 @@ ul {
   background-color: white !important;
   border-radius: 30px !important;
   border: none !important;
+  height: 42px !important;
 }
 .css-t3ipsp-control {
   background-color: white !important;
@@ -196,14 +197,16 @@ ul {
 }
 
 .css-4xgw5l-IndicatorsContainer2 {
-  padding-right: 12px !important;
   display: flex !important;
   gap: 2px !important;
 }
-
+.css-1wy0on6 {
+  margin-right: 12px !important;
+}
 @media screen and (min-width: 768px) {
   .css-13cymwt-control {
     width: 190px !important;
+    height: 48px !important;
   }
 }
 

@@ -111,3 +111,45 @@ export const deletePetThunk = createAsyncThunk(
     }
   }
 );
+
+/**
+  |============================
+  | add / delete favorites
+  |============================
+*/
+
+export const addFavoritePetThunk = createAsyncThunk(
+  'add user favorite pet',
+  async (id, thunkAPI) => {
+    try {
+      await instance.post(`/notices/favorites/add/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteFavoritePetThunk = createAsyncThunk(
+  'delete user favorite pet',
+  async (id, thunkAPI) => {
+    try {
+      await instance.delete(`/notices/favorites/remove/${id}`);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const getNoticeThunk = createAsyncThunk(
+//   'get notice',
+//   async (id, thunkAPI) => {
+//     try {
+//       await instance.get(`/notices/${id}`);
+//       return id;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

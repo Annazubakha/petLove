@@ -5,7 +5,7 @@ import { selectUser } from '../../redux/auth/slice';
 const ProfilePage = () => {
   const user = useSelector(selectUser);
   return (
-    <div className="containerBig">
+    <div className="containerBig mb-[80px]">
       <UserCard user={user} />
     </div>
   );

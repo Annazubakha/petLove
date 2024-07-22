@@ -1,5 +1,12 @@
-import { Icon } from '../index';
-import { Rating } from './Rating';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addFavoritePetThunk,
+  deleteFavoritePetThunk,
+  fetchUserInfoThunk,
+} from '../../redux/auth/operations';
+import { Icon, Rating } from '../index';
+import { selectNoticesFavorites } from '../../redux/auth/slice';
 
 export const ModalNotice = ({
   birthday,
@@ -11,7 +18,35 @@ export const ModalNotice = ({
   popularity,
   title,
   species,
+  _id,
 }) => {
+  const favorites = useSelector(selectNoticesFavorites);
+  const isFavorite = favorites.some((item) => item._id === _id);
+  const dispatch = useDispatch();
+
+  const handleAddPet = async () => {
+    try {
+      await dispatch(addFavoritePetThunk(_id));
+      await dispatch(fetchUserInfoThunk());
+    } catch {
+      toast.error('Someting went wrong. Please, try again.');
+    }
+  };
+  const handleDeletePet = async () => {
+    try {
+      await dispatch(deleteFavoritePetThunk(_id));
+      await dispatch(fetchUserInfoThunk());
+    } catch {
+      toast.error('Someting went wrong. Please, try again.');
+    }
+  };
+  const handleFavorites = () => {
+    if (isFavorite) {
+      handleDeletePet();
+    } else {
+      handleAddPet();
+    }
+  };
   return (
     <div className="px-[28px] py-[40px] flex flex-col items-center w-[335px] md:w-[473px] md:px-[71px] md:py-[40px]">
       {' '}
@@ -55,11 +90,22 @@ export const ModalNotice = ({
       </p>
       <div className="flex gap-[10px]">
         <button
-          className=" flex items-center justify-center  px-[31px] bg-my-yellow h-[44px] w-[135px] rounded-[30px] text-my-white text-[16px] leading-[1.25] tracking-[-0.03em] hover:bg-my-yellow-dark
-          md:h-[48px] md:w-[160px] gap-[8px] "
+          className={`${` flex items-center justify-center   bg-my-yellow h-[44px] w-[135px] rounded-[30px] text-my-white  leading-[1.25] tracking-[-0.03em] hover:bg-my-yellow-dark
+          md:h-[48px] md:w-[160px] gap-[8px]`} ${
+            isFavorite ? 'text-[14px]' : 'text-[16px]'
+          }`}
+          onClick={handleFavorites}
         >
-          Add to{' '}
-          <Icon id="heart" size={18} className="fill-none stroke-my-white" />
+          {isFavorite ? 'Remove from' : 'Add to'}
+          <Icon
+            id="heart"
+            size={18}
+            className={`${
+              isFavorite
+                ? 'fill-none stroke-my-yellow-light'
+                : 'fill-none stroke-my-white'
+            }`}
+          />
         </button>
         <a
           href="mailto:11111@mail.com"
