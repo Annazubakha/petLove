@@ -13,7 +13,7 @@ export const PetsList = () => {
           You don&#39;t have any pets..
         </p>
       ) : (
-        <ul className="flex flex-col gap-[14px] mb-[20px] md:flex-row md:flex-wrap">
+        <ul className="flex flex-col gap-[14px] mb-[20px] md:flex-row md:flex-wrap lg:mb-[40px]">
           {user.pets?.map((pet) => (
             <PetsItem key={pet._id} {...pet} />
           ))}

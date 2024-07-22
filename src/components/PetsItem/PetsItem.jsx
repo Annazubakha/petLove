@@ -28,11 +28,11 @@ export const PetsItem = ({
     }
   };
   return (
-    <li className=" relative rounded-[20px]  p-[16px]  flex  gap-[14px] border-[1px] border-my-black-10 md:w-[305px] md:pt-[22px] md:px-[16px] md:pr-[27px]">
+    <li className=" relative rounded-[20px]  p-[16px]  flex  gap-[14px] border-[1px] border-my-black-10 md:w-[305px] md:pt-[22px] md:px-[16px] md:pr-[27px] lg:w-full lg:p-[20px]">
       <img
         src={imgURL}
         alt="Pet's photo"
-        className="rounded-full h-[66px] w-[66px] md:h-[75px] md:w-[75px]"
+        className="rounded-full h-[66px] w-[66px] md:h-[75px] md:w-[75px] lg:h-[90px] lg:w-[90px]"
       />
       <div className="relative">
         <h1 className="font-bold leading-[1.29] text-[14px] mb-[8px] text-my-black-second truncate md:mb-[12px]">

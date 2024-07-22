@@ -39,7 +39,11 @@ export const NoticesItem = ({
   };
   return (
     <>
-      <li className="rounded-[16px] bg-my-white p-[24px] md:w-[342px] flex flex-col lg:w-[363px]">
+      <li
+        className={`rounded-[16px] bg-my-white p-[24px] md:w-[342px] flex flex-col  ${
+          isProfilePage ? 'lg:w-[320px]' : 'lg:w-[363px]'
+        }`}
+      >
         <img
           src={imgURL}
           alt="Pet's photo"
