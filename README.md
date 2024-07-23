@@ -11,7 +11,7 @@
 <ul><li>Possibility of login and registration; </li>
 <li>Possibility to view the lists of news, pets and friends;</li>
 <li>Possibility to filter pets list with pagination.</li>
- 
+</ul>
 <h3>For authorized users as bonus:</h3>
 <ul><li>Possibility to add a pet to your favorites; </li>
 <li>Possibility to create own pets;</li>
