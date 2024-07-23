@@ -1,6 +1,6 @@
  <h1>Pet Love</h1>
 
-<h2>An application where you can search and book nanny.</h2>
+<h2>The website for pet lovers.</h2>
  <img src="./src/assets/img/project_photo.png" alt="Photo of project"/>
 
  <h1>About project:</h1>
