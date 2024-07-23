@@ -255,3 +255,40 @@ ul {
 .react-datepicker-popper {
   left: 47px !important;
 }
+
+/**
+  |============================
+  | dog loader styles
+  |============================
+*/
+
+.bg-image {
+  background-image: url('assets/img/bg-img/bg_mobile@1x.png');
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .bg-image {
+    background-image: url('assets/img/bg-img/bg_mobile@2x.png');
+  }
+}
+
+@media (min-width: 768px) {
+  .bg-image {
+    background-image: url('assets/img/bg-img/bg_tablet@1x.png');
+  }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bg-image {
+      background-image: url('assets/img/bg-img/bg_tablet@2x.png');
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .bg-image {
+    background-image: url('assets/img/bg-img/bg_desktop@1x.png');
+  }
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bg-image {
+      background-image: url('assets/img/bg-img/bg_desktop@2x.png');
+    }
+  }
+}

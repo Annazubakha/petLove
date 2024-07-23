@@ -1,4 +1,6 @@
-import { PetBlock } from '../../components';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from '../../redux/auth/slice';
+import { PetBlock, DogLoader } from '../../components';
 
 import Img1 from '../../assets/img/content-img/content-img_mobile@1x.png';
 import Img2 from '../../assets/img/content-img/content-img_mobile@2x.png';
@@ -8,9 +10,6 @@ import Img4 from '../../assets/img/content-img/content-img_tablet@2x.png';
 
 import Img5 from '../../assets/img/content-img/content-img_desktop@1x.png';
 import Img6 from '../../assets/img/content-img/content-img_desktop@2x.png';
-import { DogLoader } from '../../components';
-import { useSelector } from 'react-redux';
-import { selectIsLoading } from '../../redux/auth/slice';
 
 const HomePage = () => {
   const isLoading = useSelector(selectIsLoading);

@@ -39,6 +39,7 @@ export const NoticesFilters = ({
   const [isPopular, setIsPopular] = useState(false);
   const [isUnpopular, setIsUnpopular] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -128,7 +129,6 @@ export const NoticesFilters = ({
   };
   const [selectedCity, setSelectedCity] = useState(null);
   const handleCityChange = (selectedOption) => {
-    console.log(selectedOption);
     setSelectedCity(selectedOption);
     // setLocationId(locationId);
   };
@@ -270,7 +270,7 @@ export const NoticesFilters = ({
         >
           <button
             onClick={() => {
-              setPopularity(false), setIsPopular(true);
+              setPopularity(false), setIsPopular(true), setIsUnpopular(false);
             }}
           >
             Popular
@@ -286,7 +286,7 @@ export const NoticesFilters = ({
         >
           <button
             onClick={() => {
-              setPopularity(true), setIsUnpopular(true);
+              setPopularity(true), setIsUnpopular(true), setIsPopular(false);
             }}
           >
             Unpopular
@@ -302,7 +302,7 @@ export const NoticesFilters = ({
         >
           <button
             onClick={() => {
-              setPrice(false), setIsExpensive(true);
+              setPrice(false), setIsExpensive(true), setIsCheap(false);
             }}
           >
             Expensive
@@ -316,7 +316,7 @@ export const NoticesFilters = ({
         <li className={` ${isCheap ? ' item_filter_active ' : 'item_filter'}`}>
           <button
             onClick={() => {
-              setPrice(true), setIsCheap(true);
+              setPrice(true), setIsCheap(true), setIsExpensive(false);
             }}
           >
             Cheap
