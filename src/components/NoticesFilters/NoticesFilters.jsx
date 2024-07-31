@@ -1,16 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import Select from 'react-select/creatable';
 import {
-  fetchCitiesThunk,
   fetchNoticesCategiriesThunk,
   fetchNoticesSexThunk,
-  // fetchNoticesSpeciesThunk,
 } from '../../redux/notices/operation';
 import {
   selectIsCategories,
-  selectIsCities,
   selectIsSex,
   selectIsSpecies,
 } from '../../redux/notices/slice';
@@ -24,12 +20,10 @@ export const NoticesFilters = ({
   setType,
   setPopularity,
   setPrice,
-  // setLocationId,
 }) => {
   const caterogies = useSelector(selectIsCategories);
   const sex = useSelector(selectIsSex);
   const species = useSelector(selectIsSpecies);
-  const cities = useSelector(selectIsCities);
   const [isOpen, setIsOpen] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedGender, setSelectedGender] = useState('');
@@ -45,8 +39,6 @@ export const NoticesFilters = ({
       try {
         await dispatch(fetchNoticesCategiriesThunk()).unwrap();
         await dispatch(fetchNoticesSexThunk()).unwrap();
-        // await dispatch(fetchNoticesSpeciesThunk()).unwrap();
-        await dispatch(fetchCitiesThunk()).unwrap();
       } catch {
         toast.error('Something went wrong. Please, reload the page.');
       }
@@ -127,16 +119,6 @@ export const NoticesFilters = ({
         setIsCheap(false);
     }
   };
-  const [selectedCity, setSelectedCity] = useState(null);
-  const handleCityChange = (selectedOption) => {
-    setSelectedCity(selectedOption);
-    // setLocationId(locationId);
-  };
-  const cityOptions = cities.map((city) => ({
-    value: `${city.stateEn}, ${city.cityEn}`,
-    label: `${city.stateEn}, ${city.cityEn}`,
-  }));
-
   return (
     <div className="bg-my-yellow-light p-[20px] rounded-[30px] mb-[40px] mt-[40px] flex flex-col gap-[12px] md:flex-row md:gap-[16px] md:flex-wrap md:px-[32px] md:py-[40px]">
       <SearchField setKeyword={setKeyword} setPage={setPage} />
@@ -252,19 +234,8 @@ export const NoticesFilters = ({
           </ul>
         )}
       </div>
-      <Select
-        value={selectedCity}
-        onChange={handleCityChange}
-        options={cityOptions}
-        placeholder="Location"
-        isClearable
-        components={{
-          DropdownIndicator: CustomDropdownIndicator,
-          ClearIndicator: CustomDeleteIndicator,
-        }}
-      />
 
-      <ul className=" relative flex flex-wrap gap-[10px] mt-[28px] before:h-[1px] before:w-[100%]  before:bg-my-black-10 before:absolute before:top-[-20px] md:before:w-[640px] lg:before:w-[1089px]">
+      <ul className="relative flex flex-wrap gap-[10px] mt-[28px] before:h-[1px] before:w-[100%]  before:bg-my-black-10 before:absolute before:top-[-20px] md:before:content-none lg:before:w-[1089px] md:mt-0 lg:mt-[28px]  lg:before:content-[''] ">
         <li
           className={` ${isPopular ? ' item_filter_active ' : 'item_filter'}`}
         >
@@ -331,18 +302,10 @@ export const NoticesFilters = ({
       <button
         type="button"
         onClick={handleResetFilters}
-        className="bg-my-yellow text-[14px] text-my-white h-[42px] rounded-[30px] hover:bg-my-yellow-dark md:text-[16px] md:w-[150px] md:h-[48px] md:mt-[28px]"
+        className="bg-my-yellow text-[14px] text-my-white h-[42px] rounded-[30px] hover:bg-my-yellow-dark md:text-[16px] md:w-[150px] md:h-[48px] md:mt-0 lg:mt-[28px]"
       >
         Reset all filters
       </button>
     </div>
   );
-};
-
-const CustomDropdownIndicator = () => {
-  return <Icon id="search" size={18} />;
-};
-
-const CustomDeleteIndicator = () => {
-  return <Icon id="close" className="stroke-my-black" size={18} />;
 };

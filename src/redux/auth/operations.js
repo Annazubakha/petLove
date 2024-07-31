@@ -142,14 +142,4 @@ export const deleteFavoritePetThunk = createAsyncThunk(
   }
 );
 
-// export const getNoticeThunk = createAsyncThunk(
-//   'get notice',
-//   async (id, thunkAPI) => {
-//     try {
-//       await instance.get(`/notices/${id}`);
-//       return id;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+

@@ -10,7 +10,6 @@ export const fetchNoticesThunk = createAsyncThunk(
       category = '',
       species = '',
       sex = '',
-      locationId = '',
       byPrice = '',
       byPopularity = '',
       page = 1,
@@ -24,7 +23,6 @@ export const fetchNoticesThunk = createAsyncThunk(
           category,
           species,
           sex,
-          locationId,
           byPrice,
           byPopularity,
           page,
@@ -67,18 +65,6 @@ export const fetchNoticesSpeciesThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await instance.get('/notices/species');
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchCitiesThunk = createAsyncThunk(
-  'get cities',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await instance.get('/cities');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

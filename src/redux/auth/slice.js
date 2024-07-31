@@ -17,7 +17,6 @@ const initialState = {
     email: null,
     avatar: null,
     phone: null,
-    noticesViewed: [],
     noticesFavorites: [],
     pets: [],
   },
@@ -139,7 +138,6 @@ const slice = createSlice({
     selectError: (state) => state.error,
     selectIsLoading: (state) => state.isLoading,
     selectNoticesFavorites: (state) => state.user.noticesFavorites,
-    selectNoticesViewed: (state) => state.user.noticesViewed,
   },
 });
 
@@ -153,5 +151,4 @@ export const {
   selectError,
   selectIsLoading,
   selectNoticesFavorites,
-  selectNoticesViewed,
 } = slice.selectors;
